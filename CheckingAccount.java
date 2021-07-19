@@ -7,17 +7,17 @@ public class CheckingAccount {
 	
 	private double balance;
 	private String accountNumber;
+	private String name;
+	private Users owner;
 	
-	public CheckingAccount() {
-		this.balance=0.0;
-	}
-	public CheckingAccount(double amount,String num) {
-		if(amount <=0) {
-			System.out.println("Account balance cannout be negative, balance will be set to 0");
-			this.balance=0;
-		}
-		this.balance=amount;
-		this.accountNumber=num;
+	public CheckingAccount(String num, Users theOwner, Bank theBank) {
+		//setting the account number and the user of the account
+		this.accountNumber=theBank.getNewAccountNumber();
+		this.owner = theOwner;	
+		//adding the account to the User and to the Bank to keep track of
+		owner.addAccount(this);
+		theBank.addAccount(this);
+		
 	}
 	
 	public void setBalance(double amount) {

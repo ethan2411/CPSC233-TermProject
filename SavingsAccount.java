@@ -5,6 +5,11 @@
  */
 public class SavingsAccount extends CheckingAccount {
 
+	public SavingsAccount(String num, Users theOwner, Bank theBank) {
+		super(num, theOwner, theBank);
+		// TODO Auto-generated constructor stub
+	}
+
 	private double annualInterestRate=1.25;
 	
 	public void setAnnualInterestRate(double rate) {
