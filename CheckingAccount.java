@@ -7,19 +7,19 @@ public class CheckingAccount {
 	
 	private double balance;
 	private String accountNumber;
-	private String name;
+	private String nameOfAccount;
 	private Users owner;
 	
-	public CheckingAccount(String num, Users theOwner, Bank theBank) {
+	public CheckingAccount(String name, Users theOwner, Bank theBank) {
 		//setting the account number and the user of the account
 		this.accountNumber=theBank.getNewAccountNumber();
 		this.owner = theOwner;	
+		this.nameOfAccount=name;
 		//adding the account to the User and to the Bank to keep track of
 		owner.addAccount(this);
 		theBank.addAccount(this);
 		
 	}
-	
 	public void setBalance(double amount) {
 		this.balance=amount;
 	}

@@ -1,5 +1,5 @@
 /**
- * 
+ * Not Using this class yet, trying to figure it out with one type of account first
  * @author Ethan Scott
  *
  */

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class TextInterface {
 
-	private Bank theBank;
+	private Bank theBank = new Bank("My Bank");
 	
 	public TextInterface() {
 		
@@ -16,28 +16,22 @@ public class TextInterface {
 	public void existingUser() {
 		
 		Scanner input = new Scanner(System.in);
-		System.out.print("What is your Name: ");
-		String name = input.nextLine();
+		System.out.print("What is your User ID: ");
+		String userID = input.nextLine();
 		System.out.print("Password: ");
 		String password = input.nextLine();
-		/*if(theBank.getUsers(name, password)!=null) {
-			System.out.print("Welcome "+name);
-		}
-		else {
-			System.out.println("You are not a User");
-		}*/
+		theBank.login(userID, password);
+		
 	}
 	
 	public void newUser() {
-		System.out.println("You are an new User");
+		Users aUser = new Users("Ethan Scott", "Pass",theBank);
 	}
 	
 	public void run() {
-		theBank = new Bank();		
-		Users me = new Users("Ethan Scott","pass", theBank);
-		theBank.addUser(me);
-		
 		Scanner in = new Scanner(System.in);
+		//Users aUser = theBank.addUser("Ethan Scott", "pass");
+		
 		System.out.println("Welcome to our bank! Are you: ");
 		System.out.println("1) An existing user");
 		System.out.println("2) A new User");

@@ -10,15 +10,18 @@ public class Users {
 	private String name;
 	private String password;
 	private String userID;
-	private ArrayList<Object> accounts;
+	private ArrayList<CheckingAccount> accounts;
 	
 	public Users(String tempName, String tempPassword,Bank theBank) {
+		//set the Users name and password
 		this.name=tempName;
 		this.password=tempPassword;
+		//get a User ID
 		this.userID = theBank.getNewUserID();
-		this.accounts = new ArrayList<Object>();
-		
-		System.out.println("User "+name+" ,Id " +userID+" created");
+		//make a list of accounts that the user has
+		this.accounts = new ArrayList<CheckingAccount>();
+		//Check for user ID and the users name
+		System.out.println("User "+name+", Id: " +userID+" created");
 		
 	}
 	
@@ -47,13 +50,8 @@ public class Users {
 	}
 	
 	
-	public void addAccount(Object account) {
-		if(accounts.contains(account)==true) {
-			System.out.println("This account already exists");
-		}
-		else {
-			accounts.add(account);
-		}
+	public void addAccount(CheckingAccount account) {
+		this.accounts.add(account);
 	}
 	
 	
