@@ -12,6 +12,9 @@ public class Users {
 	private String userID;
 	private ArrayList<CheckingAccount> accounts;
 	
+	public Users() {
+		
+	}
 	public Users(String tempName, String tempPassword,Bank theBank) {
 		//set the Users name and password
 		this.name=tempName;
@@ -19,10 +22,7 @@ public class Users {
 		//get a User ID
 		this.userID = theBank.getNewUserID();
 		//make a list of accounts that the user has
-		this.accounts = new ArrayList<CheckingAccount>();
-		//Check for user ID and the users name
-		System.out.println("User "+name+", Id: " +userID+" created");
-		
+		this.accounts = new ArrayList<CheckingAccount>();		
 	}
 	
 	public void setName(String tempName) {
@@ -45,8 +45,22 @@ public class Users {
 		return this.password;
 	}
 	
-	public Object getAccount() {
-		return accounts.get(0);
+	public CheckingAccount getAccount(String accountNumber) {
+		for(CheckingAccount account:accounts) {
+			if(accountNumber.equals(account.getAccountNumber())) {
+				return account;
+			}
+		}
+		return null;
+	}
+	
+	
+	public String getAllAccounts() {
+		String summary="";
+		for(CheckingAccount account:accounts) {
+			summary+="\n"+account.toString();
+		}
+		return summary;
 	}
 	
 	

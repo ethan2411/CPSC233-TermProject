@@ -3,6 +3,7 @@
  * @author Ethan Scott
  *
  */
+import java.text.NumberFormat;
 public class CheckingAccount {
 	
 	private double balance;
@@ -20,9 +21,7 @@ public class CheckingAccount {
 		theBank.addAccount(this);
 		
 	}
-	public void setBalance(double amount) {
-		this.balance=amount;
-	}
+	
 	public double getBalance() {
 		return this.balance;
 	}
@@ -34,11 +33,17 @@ public class CheckingAccount {
 	public String getAccountNumber() {
 		return this.accountNumber;
 	}
+	public String getName() {
+		return this.nameOfAccount;
+	}
 	
 	public void withdraw(double amount) {
-		if(amount>=0) {
+		if(amount>=0&& this.balance>=amount) {
 			this.balance-=amount;
 		}
+		else if(amount>this.balance) {
+			System.out.println("You cannot transfer more money than is in the account");
+		}		
 		else {
 			System.out.println("Cannot withdraw a negative amount");
 		}
@@ -54,9 +59,12 @@ public class CheckingAccount {
 	}
 	
 	public void transfer(double amount, CheckingAccount toAccount) {
-		if(amount>=0) {
+		if(amount>=0&&this.balance>=amount) {
 			this.balance-=amount;
 			toAccount.balance+=amount;
+		}
+		else if(amount>this.balance) {
+			System.out.println("You cannot transfer more money than is in the account");
 		}
 		else {
 			System.out.println("Cannot transfer a negative amount");
@@ -64,7 +72,8 @@ public class CheckingAccount {
 	}
 	
 	public String toString() {
-		return this.accountNumber+": $"+this.balance;
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		return this.nameOfAccount+": "+this.accountNumber+"\nBalance "+formatter.format(this.balance);
 	}
 
 }
