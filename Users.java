@@ -25,20 +25,8 @@ public class Users {
 		this.accounts = new ArrayList<CheckingAccount>();		
 	}
 	
-	public void setName(String tempName) {
-		this.name=tempName;
-	}
-	
-	public String getName() {
-		return this.name;
-	}
-	
 	public String getUserID() {
 		return this.userID;
-	}
-	
-	public void setPassword(String tempPassword) {
-		this.password=tempPassword;
 	}
 	
 	public String getPassword() {
@@ -54,7 +42,6 @@ public class Users {
 		return null;
 	}
 	
-	
 	public String getAllAccounts() {
 		String summary="";
 		for(CheckingAccount account:accounts) {
@@ -63,14 +50,7 @@ public class Users {
 		return summary;
 	}
 	
-	
 	public void addAccount(CheckingAccount account) {
 		this.accounts.add(account);
 	}
-	
-	
-	
-	
-	
-
 }

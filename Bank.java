@@ -73,11 +73,7 @@ public class Bank {
 	public void addAccount(CheckingAccount account) {
 		this.accounts.add(account);
 	}
-	
-	public CheckingAccount getAccount() {
-		return accounts.get(0);
-	}
-	
+		
 	public Users attemptLogin(String userID, String pass) {
 		for(Users user:this.users) {
 			if(user.getUserID().equals(userID) && user.getPassword().equals(pass)) {
