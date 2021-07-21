@@ -100,9 +100,10 @@ public class Bank {
 	 * @return The user
 	 */
 	public Users addUser(String name, String pass) {
+		//creates a new user and adds the user the the list of users
 		Users newUser = new Users(name,pass,this);
 		this.users.add(newUser);
-		
+		//returns the user
 		return newUser;
 	}
 	
@@ -111,6 +112,7 @@ public class Bank {
 	 * @param account The account to be added to the bank
 	 */
 	public void addAccount(CheckingAccount account) {
+		//add an account to the list of accounts
 		this.accounts.add(account);
 	}
 		
@@ -121,11 +123,15 @@ public class Bank {
 	 * @return The user
 	 */
 	public Users attemptLogin(String userID, String pass) {
+		//loop through all the users in the user list
 		for(Users user:this.users) {
+			//see if the user ID and Password match any of the users in the list
 			if(user.getUserID().equals(userID) && user.getPassword().equals(pass)) {
+				//if its a match return the user
 				return user;
 			}
 		}
+		//if there is no user with that combo of ID and password then return null
 		return null;
 	}
 }

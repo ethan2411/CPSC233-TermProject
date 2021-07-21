@@ -69,7 +69,7 @@ public class CheckingAccount {
 		}
 		//if they are trying to withdraw too much then it will tell them
 		else if(amount>this.balance) {
-			System.out.println("You cannot transfer more money than is in the account");
+			System.out.println("You cannot withdraw more money than is in the account");
 		}	
 		//or else the number they entered is negative and it will tell them
 		else {
