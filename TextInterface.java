@@ -1,5 +1,5 @@
 /**
- * 
+ * This class creates an interface for the user to interact with
  * @author Ethan Scott
  *
  */
@@ -9,10 +9,19 @@ public class TextInterface {
 
 	private Bank theBank = new Bank("My Bank");
 	
+	/**
+	 * This constructor creates a blank interface
+	 */
 	public TextInterface() {
 		
 	}
 	
+	/**
+	 * This method prompts the user for what account they want to deposit money into and 
+	 * then sees if the user has entered an account that they own. If they have it then sees
+	 * then how much money they would like to deposit, then deposits the money and returns them to the menu.
+	 * @param theUser The user who is currently using the program
+	 */
 	public void deposit(Users theUser) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to deposit money into?(Please enter account number)");
@@ -27,6 +36,13 @@ public class TextInterface {
 		}
 		mainMenu(theUser);		
 	}
+	
+	/**
+	 * This method prompts the user for what account they want to withdraw money from and 
+	 * then sees if the user has entered an account that they own. If they have it then sees
+	 * then how much money they would like to withdraw, then withdraws the money and returns them to the menu.
+	 * @param theUser The user who is currently using the program
+	 */
 	public void withdraw(Users theUser) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to withdraw money from?(Please enter account number)");
@@ -42,6 +58,13 @@ public class TextInterface {
 		mainMenu(theUser);	
 	}
 	
+	/**
+	 * This method prompts the user for what account they want to transfer money from and 
+	 * what account they would like to transfer money into. then sees if the user has entered
+	 * accounts that they own. If they have it then sees how much money they would like to 
+	 * transfer, transfers it and returns them to the menu.
+	 * @param theUser The user who is currently using the program
+	 */
 	public void transfer(Users theUser) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to transfer money from(Please enter account number)");
@@ -62,6 +85,10 @@ public class TextInterface {
 		mainMenu(theUser);
 	}
 	
+	/**
+	 * This method creates a new account for the user, and allows them to pick the name of the account
+	 * @param theUser The user who is currently using the program
+	 */
 	public void makeNewAccount(Users theUser) {
 		Scanner input = new Scanner(System.in);
 		String accountName ="";
@@ -87,6 +114,11 @@ public class TextInterface {
 		mainMenu(theUser);
 	}
 	
+	/**
+	 * This method is the main menu for the program, it allows the user to make all of the changes
+	 * to their account as well as create a new account and log out
+	 * @param theUser The user who is currently using the program
+	 */
 	public void mainMenu(Users theUser) {
 		Scanner input = new Scanner(System.in);
 		boolean valid=false;
@@ -126,6 +158,10 @@ public class TextInterface {
 		}		
 	}
 	
+	/**
+	 * This method allows the user to attempt to log in and if they are actually
+	 * an existing user, if they enter their User ID and Password correctly it will log them in
+	 */
 	public void existingUser() {
 		Scanner input = new Scanner(System.in);
 		boolean loginSuccess=false;
@@ -142,6 +178,9 @@ public class TextInterface {
 		mainMenu(valid);	
 	}
 	
+	/**
+	 * This method creates a new user and gives them a checking account
+	 */
 	public void newUser() {
 		Scanner info = new Scanner(System.in);
 		System.out.println("Please enter your name: ");
@@ -174,6 +213,11 @@ public class TextInterface {
 		}		
 	}
 	
+	/**
+	 * This is the start up menu, it allows the user to exit the program or if they are an
+	 * existing user then they can choose to open their account and if they are a
+	 * new user than they can choose to create an account
+	 */
 	public void run() {
 		Scanner in = new Scanner(System.in);		
 		System.out.println("Welcome to our bank! Are you: ");
@@ -200,6 +244,10 @@ public class TextInterface {
 		}
 	}	
 	
+	/**
+	 * This method makes the program run
+	 * @param args
+	 */
 	public static void main(String[] args) {		
 		TextInterface app = new TextInterface();
 		app.run();
