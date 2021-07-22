@@ -73,6 +73,24 @@ public class Users {
 	}
 	
 	/**
+	 * This method gets the account of the user with a specific account name
+	 * @param accountName The name of the account
+	 * @return The account with the given name
+	 */
+	public CheckingAccount getAccountByName(String accountName) {
+		//loop through the accounts that the user has to see if they entered
+		//a valid account name
+		for(CheckingAccount account:accounts) {
+			//if there is return the account
+			if(accountName.equals(account.getName())) {
+				return account;
+			}
+		}
+		//or else return null
+		return null;
+	}
+	
+	/**
 	 * This method creates a string of all of the information of all the accounts
 	 * that the user has
 	 * @return The information of all of the users accounts

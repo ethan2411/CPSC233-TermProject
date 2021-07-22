@@ -25,18 +25,24 @@ public class TextInterface {
 	public void deposit(Users theUser) {
 		//gets the account for the money to be deposited into
 		Scanner input = new Scanner(System.in);
-		System.out.println("What account would you like to deposit money into?(Please enter account number)");
-		String accountNumber = input.nextLine();
+		System.out.println("What account would you like to deposit money into?");
+		String account = input.nextLine();
 		//checks to see if the account is one of the users accounts
-		if(theUser.getAccount(accountNumber)==null) {
+		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
 			//if it is not then let the user know
-			System.out.println("You do not have an account with this number.");
+			System.out.println("You do not have this account");
 		}
-		else {
+		else if(theUser.getAccount(account)!=null) {
 			//if it is the users account then get the amount of money to be deposited and then deposit the money
 			System.out.println("How much would you like to deposit?");
 			double amount = input.nextDouble();
-			theUser.getAccount(accountNumber).deposit(amount);
+			theUser.getAccount(account).deposit(amount);
+		}
+		else if(theUser.getAccountByName(account)!=null) {
+			//if it is the users account then get the amount of money to be deposited and then deposit the money
+			System.out.println("How much would you like to deposit?");
+			double amount = input.nextDouble();
+			theUser.getAccountByName(account).deposit(amount);
 		}
 		//go back to the menu 
 		mainMenu(theUser);		
@@ -51,18 +57,24 @@ public class TextInterface {
 	public void withdraw(Users theUser) {
 		//gets the account for the money to be withdrawn from
 		Scanner input = new Scanner(System.in);
-		System.out.println("What account would you like to withdraw money from?(Please enter account number)");
+		System.out.println("What account would you like to withdraw money from?");
 		String account = input.nextLine();
 		//checks to see if the account is one of the users accounts
-		if(theUser.getAccount(account)==null) {
+		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
 			//if it is not then let the user know
 			System.out.println("You do not have an account with this number.");
 		}
-		else {
+		else if(theUser.getAccount(account)!=null){
 			//if it is the users account then get the amount of money to be withdrawn and then withdraw the money
 			System.out.println("How much would you like to withdraw?");
 			double amount = input.nextDouble();
 			theUser.getAccount(account).withdraw(amount);
+		}
+		else if(theUser.getAccountByName(account)!=null) {
+			//if it is the users account then get the amount of money to be deposited and then deposit the money
+			System.out.println("How much would you like to withdraw?");
+			double amount = input.nextDouble();
+			theUser.getAccountByName(account).withdraw(amount);
 		}
 		//go back to the menu
 		mainMenu(theUser);	
@@ -78,23 +90,30 @@ public class TextInterface {
 	public void transfer(Users theUser) {
 		//get the accounts the money will come from and be transfered to
 		Scanner input = new Scanner(System.in);
-		System.out.println("What account would you like to transfer money from(Please enter account number)");
-		String accountNumber = input.nextLine();
-		System.out.println("What account would you like to transfer money into(Please enter account number)");
+		System.out.println("What account would you like to transfer money from");
+		String account = input.nextLine();
+		System.out.println("What account would you like to transfer money into");
 		String transferAccount = input.nextLine();
 		//if the account the money is coming from is not the users then let them know
-		if(theUser.getAccount(accountNumber)==null) {
+		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
 			System.out.println("You cannot transfer money from this account");
 		}
 		//if the account the money is going to is not the users then let them know
-		else if(theUser.getAccount(transferAccount)==null) {
+		else if(theUser.getAccountByName(transferAccount)==null && theUser.getAccountByName(transferAccount)==null) {
 			System.out.println("You cannot transfer money to this account");
 		}
-		else {
+		//if the user entered a valid account name or account number
+		else if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null ||
+				theUser.getAccountByName(account)!=null && theUser.getAccountByName(transferAccount)!=null){
 			//if both accounts are the useres then ask how much money is to be transfered and then transfer the money
 			System.out.println("How much would you like to transfer");
 			double amount = input.nextDouble();
-			theUser.getAccount(accountNumber).transfer(amount, theUser.getAccount(transferAccount));
+			if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null) {
+				theUser.getAccount(account).transfer(amount, theUser.getAccount(transferAccount));
+			}
+			else {
+				theUser.getAccountByName(account).transfer(amount, theUser.getAccountByName(transferAccount));
+			}
 		}
 		//go back to the menu
 		mainMenu(theUser);
