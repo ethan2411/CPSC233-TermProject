@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class TextInterface {
 
 	private Bank theBank = new Bank("My Bank");
+	private Users theUser = new Users();
 	
 	/**
 	 * This constructor creates a blank interface
@@ -22,7 +23,7 @@ public class TextInterface {
 	 * then how much money they would like to deposit, then deposits the money and returns them to the menu.
 	 * @param theUser The user who is currently using the program
 	 */
-	public void deposit(Users theUser) {
+	public void deposit() {
 		//gets the account for the money to be deposited into
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to deposit money into?");
@@ -45,7 +46,7 @@ public class TextInterface {
 			theUser.getAccountByName(account).deposit(amount);
 		}
 		//go back to the menu 
-		mainMenu(theUser);		
+		mainMenu();		
 	}
 	
 	/**
@@ -54,7 +55,7 @@ public class TextInterface {
 	 * then how much money they would like to withdraw, then withdraws the money and returns them to the menu.
 	 * @param theUser The user who is currently using the program
 	 */
-	public void withdraw(Users theUser) {
+	public void withdraw() {
 		//gets the account for the money to be withdrawn from
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to withdraw money from?");
@@ -77,7 +78,7 @@ public class TextInterface {
 			theUser.getAccountByName(account).withdraw(amount);
 		}
 		//go back to the menu
-		mainMenu(theUser);	
+		mainMenu();	
 	}
 	
 	/**
@@ -87,7 +88,7 @@ public class TextInterface {
 	 * transfer, transfers it and returns them to the menu.
 	 * @param theUser The user who is currently using the program
 	 */
-	public void transfer(Users theUser) {
+	public void transfer() {
 		//get the accounts the money will come from and be transfered to
 		Scanner input = new Scanner(System.in);
 		System.out.println("What account would you like to transfer money from");
@@ -99,7 +100,7 @@ public class TextInterface {
 			System.out.println("You cannot transfer money from this account");
 		}
 		//if the account the money is going to is not the users then let them know
-		else if(theUser.getAccountByName(transferAccount)==null && theUser.getAccountByName(transferAccount)==null) {
+		else if(theUser.getAccount(transferAccount)==null && theUser.getAccountByName(transferAccount)==null) {
 			System.out.println("You cannot transfer money to this account");
 		}
 		//if the user entered a valid account name or account number
@@ -116,14 +117,14 @@ public class TextInterface {
 			}
 		}
 		//go back to the menu
-		mainMenu(theUser);
+		mainMenu();
 	}
 	
 	/**
 	 * This method creates a new account for the user, and allows them to pick the name of the account
 	 * @param theUser The user who is currently using the program
 	 */
-	public void makeNewAccount(Users theUser) {
+	public void makeNewAccount() {
 		//Get the name of the account
 		Scanner input = new Scanner(System.in);
 		String accountName ="";
@@ -152,7 +153,7 @@ public class TextInterface {
 		//create an account with the name the user gave
 		CheckingAccount anotherAccount = new CheckingAccount(name, theUser,theBank);
 		//go back to the main menu
-		mainMenu(theUser);
+		mainMenu();
 	}
 	
 	/**
@@ -160,7 +161,7 @@ public class TextInterface {
 	 * to their account as well as create a new account and log out
 	 * @param theUser The user who is currently using the program
 	 */
-	public void mainMenu(Users theUser) {
+	public void mainMenu() {
 		//canner to get information and boolean to validate input
 		Scanner input = new Scanner(System.in);
 		boolean valid=false;
@@ -180,23 +181,23 @@ public class TextInterface {
 			if(choice.equals("1") || choice.equalsIgnoreCase("Deposit")) {
 				//if they chose deposit then use the deposit method and set the boolean to true
 				valid=true;
-				deposit(theUser);
+				deposit();
 			}
 			else if(choice.equals("2") || choice.equalsIgnoreCase("Withdraw")) {
 				//if they chose withdraw then use the withdraw method and set the boolean to true
 				valid=true;
-				withdraw(theUser);
+				withdraw();
 			}
 			else if(choice.equals("3") || choice.equalsIgnoreCase("Transfer")){
 				//if they chose transfer then use the transer method and set the boolean to true
 				valid=true;
-				transfer(theUser);
+				transfer();
 			}
 			else if(choice.equals("4") || choice.equalsIgnoreCase("Open Another Account")) {
 				//if they chose to make a new account then use the makeNewAccount
 				//method and set the boolean to true
 				valid=true;
-				makeNewAccount(theUser);
+				makeNewAccount();
 			}
 			else if(choice.equals("5")|| choice.equalsIgnoreCase("Log out")) {
 				//if they chose logout then go back to the login menu and set boolean to true
@@ -219,7 +220,7 @@ public class TextInterface {
 		Scanner input = new Scanner(System.in);
 		boolean loginSuccess=false;
 		//making the user
-		Users valid=new Users();
+		theUser =new Users();
 		//loop through while the login is not successful
 		while(loginSuccess==false) {
 			//prompt for user ID and password
@@ -228,14 +229,14 @@ public class TextInterface {
 			System.out.print("Password: ");
 			String password = input.nextLine();
 			//attempt to log the user in
-			valid = theBank.attemptLogin(userID, password);
+			theUser = theBank.attemptLogin(userID, password);
 			//if the user cannot be logged in then let them know
-			if(valid ==null) {System.out.println("User ID or Password is incorrect");}
+			if(theUser ==null) {System.out.println("User ID or Password is incorrect");}
 			//if they can be logged in then set the boolean to true to end the loop
 			else {loginSuccess=true;}
 		}
 		//then send the user the the main menu
-		mainMenu(valid);	
+		mainMenu();	
 	}
 	
 	/**
@@ -249,13 +250,13 @@ public class TextInterface {
 		System.out.println("Please create a password: ");
 		String pass = info.nextLine();
 		//add a user to the bank using their name and password
-		Users aUser = theBank.addUser(name, pass);
+		theUser = theBank.addUser(name, pass);
 		//get the user ID and then give it to the user
-		String ID = aUser.getUserID();
+		String ID = theUser.getUserID();
 		System.out.println("Your user ID is: "+ID +"   It will be needed to log you in.");
 		//Let the user know they're getting a checking account and then make the account for them
 		System.out.println("You will now be given one of our Basic Checking Accounts");
-		CheckingAccount starter = new CheckingAccount("Basic Checking Account",aUser,theBank);
+		CheckingAccount starter = new CheckingAccount("Basic Checking Account",theUser,theBank);
 		//add the account to the bank
 		theBank.addAccount(starter);
 		//show the user their account
