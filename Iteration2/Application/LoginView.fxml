@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="324.0" prefWidth="386.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.LoginController">
+   <children>
+      <PasswordField fx:id="passText" layoutX="51.0" layoutY="158.0" visible="false" />
+      <TextField fx:id="IDText" layoutX="51.0" layoutY="81.0" visible="false" />
+      <Label fx:id="userIDLabel" layoutX="51.0" layoutY="46.0" text="UserID" visible="false" />
+      <Label fx:id="passwordLabel" layoutX="51.0" layoutY="132.0" text="Password" visible="false" />
+      <Button fx:id="loginButton" layoutX="258.0" layoutY="229.0" mnemonicParsing="false" onAction="#loginClicked" text="Login" visible="false" />
+      <Button fx:id="backButton" layoutX="46.0" layoutY="223.0" mnemonicParsing="false" onAction="#backClicked" text="Back" visible="false" />
+      <Label fx:id="loginLabel" layoutX="46.0" layoutY="14.0" prefHeight="35.0" prefWidth="298.0" text="Please Login" visible="false" />
+      <Button fx:id="newUserButton" layoutX="127.0" layoutY="81.0" mnemonicParsing="false" onAction="#newUserClicked" text="New User" />
+      <Button fx:id="existingUserButton" layoutX="103.0" layoutY="184.0" mnemonicParsing="false" onAction="#existingUserClicked" text="Existing User" />
+      <Button fx:id="createUserButton" layoutX="252.0" layoutY="229.0" mnemonicParsing="false" onAction="#createUserClicked" text="Create User" visible="false" />
+      <Label fx:id="nameLabel" layoutX="51.0" layoutY="46.0" text="What is your name?" visible="false" />
+      <Label fx:id="newPassLabel" layoutX="51.0" layoutY="142.0" text="Please create a password:" visible="false" />
+      <TextField fx:id="nameText" layoutX="51.0" layoutY="81.0" visible="false" />
+      <TextField fx:id="newPassText" layoutX="51.0" layoutY="177.0" visible="false" />
+      <Label fx:id="selectLabel" layoutX="127.0" layoutY="32.0" text="Please Select" />
+      <Label fx:id="orLabel" layoutX="166.0" layoutY="143.0" text="Or" />
+   </children>
+</AnchorPane>
