@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import model.Bank;
 import model.CheckingAccount;
 import model.Users;
@@ -79,7 +80,11 @@ public class LoginController {
     		loginLabel.setTextFill(Color.RED);
     		loginLabel.setText("User ID or Password is incorrect"); 
     	}
-    	else {app.mainMenu();}
+    	else {
+    		Stage stage = (Stage) loginButton.getScene().getWindow();
+    		stage.close();
+    		app.mainMenu();
+    	}
     }
 
     @FXML

@@ -39,6 +39,58 @@ public class Main extends Application {
 		}
 	}
 	
+	public void depositView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane menu = new AnchorPane();
+			menu = loader.load(new FileInputStream("src/application/DepositView.fxml"));
+			Scene depositView = new Scene(menu, 800, 600);
+			theStage.setScene(depositView);
+			theStage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void withdrawView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane menu = new AnchorPane();
+			menu = loader.load(new FileInputStream("src/application/WithdrawView.fxml"));
+			Scene depositView = new Scene(menu, 800, 600);
+			theStage.setScene(depositView);
+			theStage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void transferView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane menu = new AnchorPane();
+			menu = loader.load(new FileInputStream("src/application/TransferView.fxml"));
+			Scene depositView = new Scene(menu, 800, 600);
+			theStage.setScene(depositView);
+			theStage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void newAccountView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane menu = new AnchorPane();
+			menu = loader.load(new FileInputStream("src/application/NewAccountView.fxml"));
+			Scene depositView = new Scene(menu, 800, 600);
+			theStage.setScene(depositView);
+			theStage.show();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="580.0" prefWidth="932.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.NewAccountController">
+   <children>
+      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="563.0" prefWidth="448.0" />
+      <Label fx:id="errorLabel" layoutX="517.0" layoutY="14.0" prefHeight="35.0" prefWidth="294.0" />
+      <Label fx:id="nameLabel" layoutX="523.0" layoutY="66.0" text="Name of Your New Account: " />
+      <TextField fx:id="nameText" layoutX="515.0" layoutY="159.0" />
+      <Button fx:id="createAccount" layoutX="524.0" layoutY="468.0" mnemonicParsing="false" onAction="#createAccountClicked" text="Confirm Account Creation" />
+   </children>
+</AnchorPane>
