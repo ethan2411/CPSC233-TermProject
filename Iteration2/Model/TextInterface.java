@@ -38,13 +38,13 @@ public class TextInterface {
 			//if it is the users account then get the amount of money to be deposited and then deposit the money
 			System.out.println("How much would you like to deposit?");
 			double amount = input.nextDouble();
-			theUser.getAccount(account).deposit(amount);
+			((CheckingAccount) theUser.getAccount(account)).deposit(amount);
 		}
 		else if(theUser.getAccountByName(account)!=null) {
 			//if it is the users account then get the amount of money to be deposited and then deposit the money
 			System.out.println("How much would you like to deposit?");
 			double amount = input.nextDouble();
-			theUser.getAccountByName(account).deposit(amount);
+			((CheckingAccount) theUser.getAccountByName(account)).deposit(amount);
 		}
 		//go back to the menu 
 		mainMenu();		
@@ -70,13 +70,13 @@ public class TextInterface {
 			//if it is the users account then get the amount of money to be withdrawn and then withdraw the money
 			System.out.println("How much would you like to withdraw?");
 			double amount = input.nextDouble();
-			theUser.getAccount(account).withdraw(amount);
+			((CheckingAccount) theUser.getAccount(account)).withdraw(amount);
 		}
 		else if(theUser.getAccountByName(account)!=null) {
 			//if it is the users account then get the amount of money to be deposited and then deposit the money
 			System.out.println("How much would you like to withdraw?");
 			double amount = input.nextDouble();
-			theUser.getAccountByName(account).withdraw(amount);
+			((CheckingAccount) theUser.getAccountByName(account)).withdraw(amount);
 		}
 		//go back to the menu
 		mainMenu();	
@@ -111,10 +111,10 @@ public class TextInterface {
 			System.out.println("How much would you like to transfer");
 			double amount = input.nextDouble();
 			if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null) {
-				theUser.getAccount(account).transfer(amount, theUser.getAccount(transferAccount));
+				((CheckingAccount) theUser.getAccount(account)).transfer(amount, (CheckingAccount) theUser.getAccount(transferAccount));
 			}
 			else {
-				theUser.getAccountByName(account).transfer(amount, theUser.getAccountByName(transferAccount));
+				((CheckingAccount) theUser.getAccountByName(account)).transfer(amount, (CheckingAccount) theUser.getAccountByName(transferAccount));
 			}
 		}
 		//go back to the menu
@@ -157,6 +157,66 @@ public class TextInterface {
 		mainMenu();
 	}
 	
+	public void openSavingsAccount() {
+		Scanner input = new Scanner(System.in);
+		String accountName ="";
+		System.out.println("What would you like to be the name of your new account?");
+		String name = input.nextLine();
+		boolean sure =false;
+		while(sure==false) {
+			//Check to see if the user actually wants that name
+			System.out.println("Are you sure you want this to be the name of your new account? (Yes or No)");
+			String yesNo = input.nextLine();
+			//if they do then set the name of the account
+			if(yesNo.equalsIgnoreCase("Yes")) {
+				accountName=name;
+				sure=true;
+			}
+			//if they don't the ask for the name again
+			else if(yesNo.equalsIgnoreCase("No")) {
+				System.out.println("What would you like to be the name of your new account?");
+				name = input.nextLine();
+			}
+			else {
+				//if they don't answer if they want the name of no the prompt them to enter yes or no
+				System.out.println("Please enter yes or no");
+			}
+		}
+		//create an account with the name the user gave
+		SavingsAccount anotherAccount = new SavingsAccount(name, theUser,theBank);
+		//go back to the main menu
+		mainMenu();
+	}
+	
+	public void futureValue() {
+		Scanner input = new Scanner(System.in);
+		Scanner amount = new Scanner(System.in);
+		String account ="";
+		System.out.println("What Savings account would you like to see the future balance of? ");
+		account = input.nextLine();
+		System.out.println("How many years in the future would you like to see the value of this account?");
+		double years =amount.nextDouble();
+		if(years>=0) {
+			if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
+				//if it is not then let the user know
+				System.out.println("You do not have an account with this number.");
+			}
+			else if(theUser.getAccount(account)!=null){
+				//if it is the users account then get the amount of money to be withdrawn and then withdraw the money
+				Object theAccount = ((CheckingAccount) theUser.getAccount(account));
+				double value = (double)((SavingsAccount)theAccount).findFutureAmount(years);
+				System.out.println("The future value of this account in "+years+ " years will be: $"+value);
+			}
+			else if(theUser.getAccountByName(account)!=null) {
+				//if it is the users account then get the amount of money to be deposited and then deposit the money
+				Object theAccount = ((CheckingAccount) theUser.getAccountByName(account));
+				double value = (double)((SavingsAccount)theAccount).findFutureAmount(years);
+				System.out.println("The future value of this account in "+years+ " years will be: $"+value);
+			}
+		}	
+		mainMenu();
+	}
+	
 	/**
 	 * This method is the main menu for the program, it allows the user to make all of the changes
 	 * to their account as well as create a new account and log out
@@ -177,6 +237,8 @@ public class TextInterface {
 			System.out.println("3) Transfer");
 			System.out.println("4) Open Another Account");
 			System.out.println("5) Log out");
+			System.out.println("6) Open Savings Account");
+			System.out.println("7) Future Value of savings account");
 			String choice = input.nextLine();
 			//checks to validate the input
 			if(choice.equals("1") || choice.equalsIgnoreCase("Deposit")) {
@@ -205,6 +267,19 @@ public class TextInterface {
 				valid=true;
 				run();
 			}
+			else if(choice.equals("6")|| choice.equalsIgnoreCase("Open Savings Account")) {
+				//if they chose logout then go back to the login menu and set boolean to true
+				valid=true;
+				openSavingsAccount();
+				
+			}
+			else if(choice.equals("7")|| choice.equalsIgnoreCase("Furure Value of savings account")) {
+				//if they chose logout then go back to the login menu and set boolean to true
+				valid=true;
+				futureValue();
+				
+			}
+			
 			else {
 				//if they dont enter a valid input then prompt the user to select an option again
 				System.out.println("Please select an option");
@@ -327,7 +402,7 @@ public class TextInterface {
 	 */
 	public static void main(String[] args) {		
 		//creating the application and running it
-		TextInterface app = new TextInterface();
+		TextInterface app = new TextInterface();	
 		app.run();
 	}
 

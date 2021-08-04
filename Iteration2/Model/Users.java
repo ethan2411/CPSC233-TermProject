@@ -12,7 +12,7 @@ public class Users {
 	private String name;
 	private String password;
 	private String userID;
-	private ArrayList<CheckingAccount> accounts;
+	private ArrayList<Object> accounts;
 	
 	/**
 	 * This constructor creates a blank user
@@ -34,7 +34,7 @@ public class Users {
 		//get a User ID
 		this.userID = theBank.getNewUserID();
 		//make a list of accounts that the user has
-		this.accounts = new ArrayList<CheckingAccount>();		
+		this.accounts = new ArrayList<Object>();		
 	}
 	
 	/**
@@ -60,12 +60,12 @@ public class Users {
 	 * @param accountNumber The number of the account
 	 * @return The account with the given account number
 	 */
-	public CheckingAccount getAccount(String accountNumber) {
+	public Object getAccount(String accountNumber) {
 		//looping through the users accounts to see if there is an account
 		//with the desired account number
-		for(CheckingAccount account:accounts) {
+		for(Object account:accounts) {
 			//if there is return the account
-			if(accountNumber.equals(account.getAccountNumber())) {
+			if(accountNumber.equals(((CheckingAccount) account).getAccountNumber())) {
 				return account;
 			}
 		}
@@ -78,12 +78,12 @@ public class Users {
 	 * @param accountName The name of the account
 	 * @return The account with the given name
 	 */
-	public CheckingAccount getAccountByName(String accountName) {
+	public Object getAccountByName(String accountName) {
 		//loop through the accounts that the user has to see if they entered
 		//a valid account name
-		for(CheckingAccount account:accounts) {
+		for(Object account:accounts) {
 			//if there is return the account
-			if(accountName.equals(account.getName())) {
+			if(accountName.equals(((CheckingAccount) account).getName())) {
 				return account;
 			}
 		}
@@ -101,7 +101,7 @@ public class Users {
 		String summary="";
 		//loop through the accounts from the user and get the information from
 		//each account and then add that information to the summary string
-		for(CheckingAccount account:accounts) {
+		for(Object account:accounts) {
 			summary+="\n"+account.toString();
 		}
 		//return the summary string
@@ -112,7 +112,7 @@ public class Users {
 	 * This method adds an account to the user
 	 * @param account Account to be added to the user
 	 */
-	public void addAccount(CheckingAccount account) {
+	public void addAccount(Object account) {
 		//adds an account to the user
 		this.accounts.add(account);
 	}

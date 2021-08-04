@@ -13,7 +13,7 @@ public class Bank {
 	//information that all of the banks need
 	private String name;
 	private ArrayList<Users> users;
-	private ArrayList<CheckingAccount> accounts;
+	private ArrayList<Object> accounts;
 	
 	/**
 	 * This constructor creates a bank with a given name and initializes it's users and accounts
@@ -23,7 +23,7 @@ public class Bank {
 		//Sets the name of the bank and creates empty arraylists for users and accounts
 		this.name = theName;
 		this.users=new ArrayList<Users>();
-		this.accounts = new ArrayList<CheckingAccount>();
+		this.accounts = new ArrayList<Object>();
 	}
 	
 	/**
@@ -82,9 +82,9 @@ public class Bank {
 			}
 			//loop through all of the accounts in the bank to see if there
 			//is an account with the same account number
-			for(CheckingAccount account:this.accounts) {
+			for(Object account:this.accounts) {
 				//if there is then continue to create account numbers till theres not a match
-				if(accountNumber.equals((account).getAccountNumber())) {
+				if(accountNumber.equals(((CheckingAccount) account).getAccountNumber())) {
 					match = true;
 					break;
 				}
@@ -112,7 +112,7 @@ public class Bank {
 	 * This method adds an account to the list of accounts in the bank
 	 * @param account The account to be added to the bank
 	 */
-	public void addAccount(CheckingAccount account) {
+	public void addAccount(Object account) {
 		//add an account to the list of accounts
 		this.accounts.add(account);
 	}
