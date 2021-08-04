@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Users;
+import model.CheckingAccount;
 
 public class WithdrawController {
 
@@ -32,7 +33,7 @@ public class WithdrawController {
     @FXML
     private Label accountLabel;
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
 
     @FXML
@@ -48,8 +49,8 @@ public class WithdrawController {
     		}
     		else if(theUser.getAccount(account)!=null){
     			//if it is the users account then get the amount of money to be withdrawn and then withdraw the money
-    			if(amount>=0 && amount<= theUser.getAccount(account).getBalance()) {
-    				theUser.getAccount(account).withdraw(amount);
+    			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
+    				((CheckingAccount) theUser.getAccount(account)).withdraw(amount);
         			change();
     			}
     			else {
@@ -59,8 +60,8 @@ public class WithdrawController {
     		}
     		else if(theUser.getAccountByName(account)!=null) {
     			//if it is the users account then get the amount of money to be deposited and then deposit the money
-    			if(amount>=0 && amount<= theUser.getAccountByName(account).getBalance()) {
-    				theUser.getAccountByName(account).withdraw(amount);
+    			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance()) {
+    				((CheckingAccount) theUser.getAccountByName(account)).withdraw(amount);
         			change();
     			}
     			else {

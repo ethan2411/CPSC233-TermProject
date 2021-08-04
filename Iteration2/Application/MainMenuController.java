@@ -34,7 +34,7 @@ public class MainMenuController {
     @FXML
     private Button transferButton;
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
     private Bank theBank = LoginController.getBank();
 

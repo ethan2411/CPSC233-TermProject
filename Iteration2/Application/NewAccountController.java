@@ -33,7 +33,7 @@ public class NewAccountController {
     @FXML
     private Label nameLabel;
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
     private Bank theBank = LoginController.getBank();
 

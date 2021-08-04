@@ -64,7 +64,7 @@ public class LoginController {
     @FXML
     private Label nameLabel;
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private static Users theUser = new Users();
     private static Bank theBank = new Bank("The Bank");
 

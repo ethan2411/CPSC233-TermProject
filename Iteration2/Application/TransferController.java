@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Users;
+import model.CheckingAccount;
 
 public class TransferController {
 
@@ -29,7 +30,7 @@ public class TransferController {
     @FXML
     private Button transferButton;
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
 
     @FXML
@@ -51,10 +52,10 @@ public class TransferController {
     		//if the user entered a valid account name or account number
     		else if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null ||
     				theUser.getAccountByName(account)!=null && theUser.getAccountByName(transferAccount)!=null){
-    			//if both accounts are the useres then ask how much money is to be transfered and then transfer the money
+    			//if both accounts are the users then ask how much money is to be transfered and then transfer the money
     			if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null) {
-    				if(amount>=0 && amount<= theUser.getAccount(account).getBalance()) {
-    					theUser.getAccount(account).transfer(amount, theUser.getAccount(transferAccount));
+    				if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
+    					((CheckingAccount) theUser.getAccount(account)).transfer(amount, (CheckingAccount) theUser.getAccount(transferAccount));
         				change();
     				}
     				else {
@@ -63,8 +64,8 @@ public class TransferController {
     				}
     			}
     			else {
-    				if(amount>=0 && amount<= theUser.getAccountByName(account).getBalance()) {
-    					theUser.getAccountByName(account).transfer(amount, theUser.getAccountByName(transferAccount));
+    				if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance()) {
+    					((CheckingAccount) theUser.getAccountByName(account)).transfer(amount, (CheckingAccount) theUser.getAccountByName(transferAccount));
         				change();
     				}
     				else {

@@ -7,8 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.Bank;
+import model.CheckingAccount;
 import model.Users;
+import model.CheckingAccount;
 
 public class DepositController {
 
@@ -31,7 +32,7 @@ public class DepositController {
     private Button depositButton;
     
     
-    private Main app = new Main();
+    private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
 
     @FXML
@@ -39,16 +40,17 @@ public class DepositController {
     	String account = accountText.getText();
     	String amountString = amountText.getText();
     	try {
-    		double amount = Double.parseDouble(amountString);
-    		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
+    		double amount =0;
+    		amount = Double.parseDouble(amountString);
+    		if(((CheckingAccount)theUser.getAccount(account))==null && ((CheckingAccount)theUser.getAccountByName(account))==null) {
     			//if it is not then let the user know
         		errorLabel.setTextFill(Color.RED);
         		errorLabel.setText("The account you entered does not exist.");
     		}
-    		else if(theUser.getAccount(account)!=null) {
+    		else if((CheckingAccount)theUser.getAccount(account)!=null) {
     			//if it is the users account then get the amount of money to be deposited and then deposit the money
     			if(amount>=0) {
-    				theUser.getAccount(account).deposit(amount);
+    				((CheckingAccount) theUser.getAccount(account)).deposit(amount);
         			change();
     			}
     			else {
@@ -56,10 +58,11 @@ public class DepositController {
             		errorLabel.setText("The amount entered cannot be deposited");
     			}
     		}
-    		else if(theUser.getAccountByName(account)!=null) {
+    		else if((CheckingAccount)theUser.getAccountByName(account)!=null) {
+    			System.out.print("got here 6");
     			//if it is the users account then get the amount of money to be deposited and then deposit the money
     			if(amount>=0) {
-    				theUser.getAccountByName(account).deposit(amount);
+    				((CheckingAccount) theUser.getAccountByName(account)).deposit(amount);
         			change();
     			}
     			else {
@@ -71,7 +74,6 @@ public class DepositController {
     	}catch(Exception e ) {
     		errorLabel.setTextFill(Color.RED);
     		errorLabel.setText("Please enter a valid number to deposit.");
-    		amountText.setText("");
     	}    	
     	
     }
