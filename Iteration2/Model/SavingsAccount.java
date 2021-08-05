@@ -1,12 +1,12 @@
 /**
- * This class creates and controlls a savings account for the user
+ * This class creates and controls a savings account for the user
  * @author Ethan Scott
  *
  */
 package model;
 public class SavingsAccount extends CheckingAccount {
 
-	//making a minimum balance and an annual interest rate for the account
+	//making an annual interest rate for the account
 	private double annualInterestRate=1.25;
 	
 	/**
@@ -20,38 +20,25 @@ public class SavingsAccount extends CheckingAccount {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void transfer(double amount, CheckingAccount toAccount) {
-		if(amount>0) {
-			super.transfer(amount, toAccount);
-		}
-	}
-	
-	public void withdraw(double amount) {
-		if(amount>0) {
-			super.withdraw(amount);
-		}
-	}
-	
-	
-	public void setAnnualInterestRate(double rate) {
-		if(rate>=0 && rate<=1) {
-			this.annualInterestRate=rate;
-		}
-	}
-	
-	public double getAnnualInterestRate() {
-		return this.annualInterestRate;
-	}
-	
+	/**
+	 * This method finds the future value of the account based on the annual interest rate
+	 * and the number of years the user wants to wait
+	 * @param years Number of years in the future to calculate
+	 * @return The future value of the account
+	 */
 	public double findFutureAmount(double years) {
+		//get the balance of the account
 		double currentBalance = this.getBalance();
+		//get the amount that that the account will go up by
 		double interestAmount = currentBalance*(annualInterestRate/100);
 		double futureBalance =0;
+		//if the number of years is positive then add the interest amount to the balance
 		if(years>=0) {
 			futureBalance=currentBalance+interestAmount;
 			return futureBalance;
 		}
 		else {
+			//otherwise let them know
 			System.out.println("Cannot calculate negative Years");
 			return currentBalance;
 		}

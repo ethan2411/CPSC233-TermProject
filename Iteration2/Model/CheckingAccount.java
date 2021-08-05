@@ -118,6 +118,29 @@ public class CheckingAccount {
 	}
 	
 	/**
+	 * This method allows the user to send money to another user within the bank
+	 * @param amount Amount to be transfered
+	 * @param toUser The user that will be receiving the money
+	 */
+	public void etransfer(double amount, Users toUser) {
+		//seeing if the amount to be transfered is a valid amount
+		if(amount>=0&&this.balance>=amount) {
+			//if it is then remove the amount from one account and add it to the other users account
+			CheckingAccount transferAccount = (CheckingAccount) toUser.getAccountByName("Basic Chequing Account");			
+			this.balance-=amount;
+			transferAccount.balance+=amount;
+		}
+		//if the balance is too big then let the user know
+		else if(amount>this.balance) {
+			System.out.println("You cannot transfer more money than is in the account");
+		}
+		//or else the balance is negative and it will let the use know
+		else {
+			System.out.println("Cannot transfer a negative amount");
+		}
+	}
+	
+	/**
 	 * This method creates a string of the information of the account
 	 * @return The information of the account
 	 */

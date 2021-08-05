@@ -117,7 +117,12 @@ public class Users {
 		this.accounts.add(account);
 	}
 	
+	/**
+	 * This method gets the number of accounts that the user has
+	 * @return The number of accounts that the user has
+	 */
 	public int numberOfAccounts() {
+		//get the size of the accounts array and return it
 		int num = accounts.size();
 		return num;
 	}

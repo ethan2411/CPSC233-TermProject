@@ -135,4 +135,22 @@ public class Bank {
 		//if there is no user with that combo of ID and password then return null
 		return null;
 	}
+	
+	/**
+	 * This method gets the user with a specific user ID
+	 * @param UserID the ID of the user to get
+	 * @return The user with the ID
+	 */
+	public Users getUser(String UserID) {
+		//loop through the users in the users arraylist
+		for(Users user: this.users) {
+			//see if theres a user with the appropriate ID
+			if(user.getUserID().equals(UserID)) {
+				//if there is then return the user
+				return user;
+			}
+		}
+		//if there isn't a user then return null
+		return null;
+	}
 }
