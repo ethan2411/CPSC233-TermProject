@@ -33,6 +33,9 @@ public class WithdrawController {
     @FXML
     private Label accountLabel;
     
+    @FXML
+    private Button backButton;
+    
     private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
 
@@ -77,6 +80,13 @@ public class WithdrawController {
     	}
     }
     
+    @FXML
+    void backClicked(ActionEvent event) {
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+		stage.close();
+		app.mainMenu();
+    }
+    
     public void change() {
 		Stage stage = (Stage) withdrawButton.getScene().getWindow();
 		stage.close();
@@ -84,7 +94,7 @@ public class WithdrawController {
     }
     
     public void initialize() {
-    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts();
+    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts()+"\n";
     	info += theUser.getAllAccounts();
     	accountSummaryLabel.setText(info);
     }

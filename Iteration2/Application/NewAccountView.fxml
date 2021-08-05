@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="580.0" prefWidth="932.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.NewAccountController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NewAccountController">
    <children>
-      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="563.0" prefWidth="448.0" />
-      <Label fx:id="errorLabel" layoutX="517.0" layoutY="14.0" prefHeight="35.0" prefWidth="294.0" />
-      <Label fx:id="nameLabel" layoutX="523.0" layoutY="66.0" text="Name of Your New Account: " />
-      <TextField fx:id="nameText" layoutX="515.0" layoutY="159.0" />
-      <Button fx:id="createAccount" layoutX="524.0" layoutY="468.0" mnemonicParsing="false" onAction="#createAccountClicked" text="Confirm Account Creation" />
+      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="395.0" prefWidth="250.0" />
+      <Label fx:id="errorLabel" layoutX="225.0" layoutY="20.0" prefHeight="35.0" prefWidth="365.0" />
+      <Label fx:id="nameLabel" layoutX="300.0" layoutY="120.0" text="Name of Your New Account: " />
+      <TextField fx:id="nameText" layoutX="300.0" layoutY="140.0" />
+      <Button fx:id="createAccount" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#createAccountClicked" text="Confirm Account Creation" />
+      <Button fx:id="backButton" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#backCLicked" text="Back" />
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
+/**
+ * This method controls what happens after the user selects the input
+ */
 package application;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,7 +15,6 @@ import javafx.stage.Stage;
 import model.Bank;
 import model.CheckingAccount;
 import model.Users;
-
 public class LoginController {
 	
     @FXML
@@ -50,6 +51,9 @@ public class LoginController {
     private Button existingUserButton;
 
     @FXML
+    private Label welcomeLabel;
+    
+    @FXML
     private Button createUserButton;
 
     @FXML
@@ -64,22 +68,33 @@ public class LoginController {
     @FXML
     private Label nameLabel;
     
+    //app instance variable to change scenes
     private BankingApplication app = new BankingApplication();
+    //creating a user and bank variable that other controllers
+    //will also be able to use
     private static Users theUser = new Users();
     private static Bank theBank = new Bank("The Bank");
 
+    /**
+     * The method gets the UserID and password entered by the user and
+     * attempts to log them in. If they entered an appropriate username and
+     * password then the user will be logged in and the view will change. If not they will
+     * get an indicator letting them know something is wrong.
+     * @param event Clicking the login Button
+     */
     @FXML
     void loginClicked(ActionEvent event) {
-    	boolean loginSuccess = false;
+    	//getting the user input
     	String userId = IDText.getText();
     	String pass = passText.getText();
-    	System.out.println(userId);
-    	System.out.println(pass);
+    	//attempting to log the user in
     	theUser = theBank.attemptLogin(userId, pass);
+    	//if the login doesn't work then let the user know
     	if(theUser == null) {
     		loginLabel.setTextFill(Color.RED);
     		loginLabel.setText("User ID or Password is incorrect"); 
     	}
+    	//if the login works then take the user to the main menu
     	else {
     		Stage stage = (Stage) loginButton.getScene().getWindow();
     		stage.close();
@@ -87,13 +102,20 @@ public class LoginController {
     	}
     }
 
+    /**
+     * This method brings the user back to the welcome screen where
+     * they can again pick if they are a new user or an existing user
+     * @param event Clicking the back button
+     */
     @FXML
     void backClicked(ActionEvent event) {
+    	//making welcom screen visible
     	newUserButton.setVisible(true);
     	selectLabel.setVisible(true);
     	orLabel.setVisible(true);
     	existingUserButton.setVisible(true);
-    	
+    	welcomeLabel.setVisible(true);
+    	//making everything else invisible
     	backButton.setVisible(false);
     	createUserButton.setVisible(false);
     	nameLabel.setVisible(false);
@@ -110,12 +132,20 @@ public class LoginController {
     	
     }
 
+    /**
+     * This method changes the screen if the user selects that
+     * they are a new user
+     * @param event Clicking the new user button
+     */
     @FXML
     void newUserClicked(ActionEvent event) {
+    	//making welcome screen invisible
     	newUserButton.setVisible(false);
     	selectLabel.setVisible(false);
     	orLabel.setVisible(false);
     	existingUserButton.setVisible(false);
+    	welcomeLabel.setVisible(false);
+    	//making stuff visible so user can create an account
     	backButton.setVisible(true);
     	createUserButton.setVisible(true);
     	nameLabel.setVisible(true);
@@ -124,12 +154,20 @@ public class LoginController {
     	newPassText.setVisible(true);
     }
 
+    /**
+     * This method changes the screen if the user selects that
+     * they are an existing user
+     * @param event Clicking the existing user button
+     */
     @FXML
     void existingUserClicked(ActionEvent event) {
+    	//Making welcome screen invisible
     	newUserButton.setVisible(false);
     	selectLabel.setVisible(false);
     	orLabel.setVisible(false);
     	existingUserButton.setVisible(false);
+    	welcomeLabel.setVisible(false);
+    	//making the login screen visible
     	backButton.setVisible(true);
     	loginButton.setVisible(true);
     	loginLabel.setVisible(true);
@@ -140,30 +178,52 @@ public class LoginController {
     	
     }
 
+    /**
+     * This method creates the user after they have entered input into the textbox
+     * and lets them know their user ID and creates a Basic Chequing Account for them
+     * @param event Clicking the create User Button
+     */
     @FXML
     void createUserClicked(ActionEvent event) {
     	String name = nameText.getText();
     	String pass = newPassText.getText();
-    	theUser = theBank.addUser(name, pass);
-    	String ID = theUser.getUserID();
-    	CheckingAccount starter = new CheckingAccount("Basic Checking Account",theUser,theBank);
-		theBank.addAccount(starter);
-		//The next section of code on alert boxes 
-		//was found on https://code.makery.ch/blog/javafx-dialogs-official/
-    	Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle("User Information");
-    	alert.setHeaderText("Information about your account");
-    	alert.setContentText("Your userID is: "+ID+ " this will be needed to login. \n"
-    			+ "You will also be given one of our basic checking accounts to start.");
-    	alert.showAndWait();
-    	backClicked(event);
-    	existingUserClicked(event);
+    	if(name.equals("") || pass.equals("")) {
+    		Alert error = new Alert(AlertType.WARNING);
+        	error.setTitle("Please Enter Information");
+        	error.setHeaderText("No Name or Password");
+        	error.setContentText("Please enter a name and password to create your account.");
+        	error.showAndWait();
+    	}
+    	else {
+    		theUser = theBank.addUser(name, pass);
+        	String ID = theUser.getUserID();
+        	CheckingAccount starter = new CheckingAccount("Basic Chequing Account",theUser,theBank);
+    		theBank.addAccount(starter);
+    		//The next section of code on alert boxes 
+    		//was found on https://code.makery.ch/blog/javafx-dialogs-official/
+        	Alert alert = new Alert(AlertType.INFORMATION);
+        	alert.setTitle("User Information");
+        	alert.setHeaderText("Information about your account");
+        	alert.setContentText("Your userID is: "+ID+ " this will be needed to login. \n"
+        			+ "You will also be given one of our basic chequing accounts to start.");
+        	alert.showAndWait();
+        	backClicked(event);
+        	existingUserClicked(event);
+    	}
     }
     
     
+    /**
+     * This method allows other classes to get the user
+     * @return The user
+     */
     public static Users getUser() {
     	return theUser;
     }
+    /**
+     * This method allows other classes to get the bank
+     * @return The Bank
+     */
     public static Bank getBank() {
 		return theBank;
     }

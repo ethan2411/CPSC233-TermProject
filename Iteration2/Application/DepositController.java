@@ -31,6 +31,9 @@ public class DepositController {
     @FXML
     private Button depositButton;
     
+    @FXML
+    private Button backButton;
+
     
     private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
@@ -78,6 +81,13 @@ public class DepositController {
     	
     }
     
+    @FXML
+    void backClicked(ActionEvent event) {
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+		stage.close();
+		app.mainMenu();
+    }
+    
     public void change() {
     	Stage stage = (Stage) depositButton.getScene().getWindow();
 		stage.close();
@@ -85,7 +95,7 @@ public class DepositController {
     }
     
     public void initialize() {
-    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts();
+    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts()+"\n";
     	info += theUser.getAllAccounts();
     	accountSummaryLabel.setText(info);
     }

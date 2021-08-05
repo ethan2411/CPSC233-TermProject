@@ -18,6 +18,9 @@ import model.Users;
 
 public class NewAccountController {
 
+	@FXML
+    private Button backButton;
+	
     @FXML
     private Label accountSummaryLabel;
 
@@ -64,8 +67,15 @@ public class NewAccountController {
     	}
     }
     
+    @FXML
+    void backCLicked(ActionEvent event) {
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+		stage.close();
+		app.mainMenu();
+    }
+    
     public void initialize() {
-    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts();
+    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts()+"\n";
     	info += theUser.getAllAccounts();
     	accountSummaryLabel.setText(info);
     }

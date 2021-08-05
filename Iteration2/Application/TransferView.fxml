@@ -5,17 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="468.0" prefWidth="844.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.TransferController">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TransferController">
    <children>
-      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="7.0" prefHeight="455.0" prefWidth="408.0" />
-      <Label fx:id="errorLabel" layoutX="465.0" layoutY="20.0" prefHeight="35.0" prefWidth="328.0" />
-      <Label layoutX="465.0" layoutY="64.0" text="Account to transfer from: " />
-      <Label layoutX="465.0" layoutY="159.0" text="Account to transfer into: " />
-      <Label layoutX="465.0" layoutY="255.0" text="Amount to Transfer: " />
-      <TextField fx:id="transferFromText" layoutX="465.0" layoutY="99.0" />
-      <TextField fx:id="transferToText" layoutX="465.0" layoutY="194.0" />
-      <TextField fx:id="amountText" layoutX="453.0" layoutY="290.0" />
-      <Button fx:id="transferButton" layoutX="597.0" layoutY="371.0" mnemonicParsing="false" onAction="#transferClicked" text="Confirm Transfer" />
+      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="395.0" prefWidth="250.0" />
+      <Label fx:id="errorLabel" layoutX="225.0" layoutY="20.0" prefHeight="35.0" prefWidth="365.0" />
+      <Label layoutX="300.0" layoutY="50.0" text="Account to transfer from: " />
+      <Label layoutX="300.0" layoutY="120.0" text="Account to transfer into: " />
+      <Label layoutX="300.0" layoutY="190.0" text="Amount to Transfer: " />
+      <TextField fx:id="transferFromText" layoutX="300.0" layoutY="70.0" />
+      <TextField fx:id="transferToText" layoutX="300.0" layoutY="140.0" />
+      <TextField fx:id="amountText" layoutX="300.0" layoutY="210.0" />
+      <Button fx:id="transferButton" layoutX="300.0" layoutY="250.0" mnemonicParsing="false" onAction="#transferClicked" text="Confirm Transfer" />
+      <Button fx:id="backButton" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
    </children>
 </AnchorPane>

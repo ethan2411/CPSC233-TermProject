@@ -5,16 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenuController">
    <children>
-      <Label fx:id="accountInfoLabel" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="182.0" text="Account Info:" />
-      <Label fx:id="accountsSummaryLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="59.0" prefHeight="583.0" prefWidth="386.0" wrapText="true" />
-      <Label layoutX="478.0" layoutY="14.0" text="What would you like to do?" />
-      <Button fx:id="depositButton" layoutX="488.0" layoutY="107.0" mnemonicParsing="false" onAction="#depositClicked" text="Deposit" />
-      <Button fx:id="withdrawButton" layoutX="478.0" layoutY="182.0" mnemonicParsing="false" onAction="#withdrawClicked" text="Withdraw" />
-      <Button fx:id="transferButton" layoutX="488.0" layoutY="261.0" mnemonicParsing="false" onAction="#transferCLicked" text="Transfer" />
-      <Button fx:id="newAccountButton" layoutX="488.0" layoutY="351.0" mnemonicParsing="false" onAction="#newAccountClicked" text="Open A New Account" />
-      <Button fx:id="logoutButton" layoutX="876.0" layoutY="585.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
-      <Label fx:id="userIDLabel" layoutX="838.0" layoutY="14.0" />
+      <Label fx:id="accountInfoLabel" layoutX="5.0" layoutY="15.0" prefHeight="35.0" prefWidth="182.0" text="Account Info:" />
+      <Label fx:id="accountsSummaryLabel" alignment="TOP_LEFT" layoutX="5.0" layoutY="60.0" prefHeight="400.0" prefWidth="300.0" wrapText="true" />
+      <Label layoutX="300.0" layoutY="14.0" text="What would you like to do?" />
+      <Button fx:id="depositButton" layoutX="300.0" layoutY="100.0" mnemonicParsing="false" onAction="#depositClicked" text="Deposit" />
+      <Button fx:id="withdrawButton" layoutX="300.0" layoutY="182.0" mnemonicParsing="false" onAction="#withdrawClicked" text="Withdraw" />
+      <Button fx:id="transferButton" layoutX="300.0" layoutY="261.0" mnemonicParsing="false" onAction="#transferCLicked" text="Transfer" />
+      <Button fx:id="newAccountButton" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#newAccountClicked" text="Open A Checking Account" />
+      <Button fx:id="logoutButton" layoutX="450.0" layoutY="450.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
+      <Label fx:id="userIDLabel" layoutX="500.0" layoutY="15.0" />
+      <Button fx:id="savingsButton" layoutX="300.0" layoutY="370.0" mnemonicParsing="false" onAction="#savingsClicked" text="Open A Savings Account" />
    </children>
 </AnchorPane>

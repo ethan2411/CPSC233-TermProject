@@ -34,9 +34,11 @@ public class MainMenuController {
     @FXML
     private Button transferButton;
     
+    @FXML
+    private Button savingsButton;
+    
     private BankingApplication app = new BankingApplication();
     private Users theUser= LoginController.getUser();
-    private Bank theBank = LoginController.getBank();
 
     @FXML
     void depositClicked(ActionEvent event) {
@@ -65,6 +67,13 @@ public class MainMenuController {
 		stage.close();
 		app.newAccountView();
     }
+    
+    @FXML
+    void savingsClicked(ActionEvent event) {
+    	Stage stage = (Stage) savingsButton.getScene().getWindow();
+		stage.close();
+		app.newSavingsView();
+    }
 
     @FXML
     void logoutButtonClicked(ActionEvent event) {
@@ -84,7 +93,7 @@ public class MainMenuController {
     }
     
     public void setAccountInfo() {
-    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts();
+    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts()+"\n";
     	info += theUser.getAllAccounts();
     	accountsSummaryLabel.setText(info);
     	userIDLabel.setText("UserID: "+theUser.getUserID());

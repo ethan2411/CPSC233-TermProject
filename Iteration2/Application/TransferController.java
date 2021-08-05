@@ -26,6 +26,10 @@ public class TransferController {
 
     @FXML
     private TextField transferFromText;
+    
+    @FXML
+    private Button backButton;
+
 
     @FXML
     private Button transferButton;
@@ -82,6 +86,13 @@ public class TransferController {
     	}
     }
     
+    @FXML
+    void backClicked(ActionEvent event) {
+    	Stage stage = (Stage) backButton.getScene().getWindow();
+		stage.close();
+		app.mainMenu();
+    }
+    
     public void change() {
     	Stage stage = (Stage) transferButton.getScene().getWindow();
 		stage.close();
@@ -89,7 +100,7 @@ public class TransferController {
     }
     
     public void initialize() {
-    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts();
+    	String info = "Number Of Accounts: "+ theUser.numberOfAccounts()+"\n";
     	info += theUser.getAllAccounts();
     	accountSummaryLabel.setText(info);
     }
