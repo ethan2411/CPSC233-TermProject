@@ -46,7 +46,7 @@ public class TransferController {
     		double amount = Double.parseDouble(amountString);
     		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
     			errorLabel.setTextFill(Color.RED);
-        		errorLabel.setText("The account you are trying to transfer money from doesn't exist.");
+        		errorLabel.setText("The account you are transfering from doesn't exist.");
     		}
     		//if the account the money is going to is not the users then let them know
     		else if(theUser.getAccount(transferAccount)==null && theUser.getAccountByName(transferAccount)==null) {
@@ -81,16 +81,14 @@ public class TransferController {
     	}
     	catch(Exception e) {
     		errorLabel.setTextFill(Color.RED);
-    		errorLabel.setText("Please enter a valid number to transfer.");
+    		errorLabel.setText("Please enter a valid amount to transfer.");
     		amountText.setText("");
     	}
     }
     
     @FXML
     void backClicked(ActionEvent event) {
-    	Stage stage = (Stage) backButton.getScene().getWindow();
-		stage.close();
-		app.mainMenu();
+    	change();
     }
     
     public void change() {

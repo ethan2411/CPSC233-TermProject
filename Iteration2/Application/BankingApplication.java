@@ -145,6 +145,22 @@ public class BankingApplication extends Application {
 		}
 	}
 	
+	public void eTransferView() {
+		try {
+			//creating a loader and loading the file, then making the scene large enough
+			//and setting the stage to show the user
+			FXMLLoader loader = new FXMLLoader();
+			AnchorPane menu = new AnchorPane();
+			menu = loader.load(new FileInputStream("src/application/E-TransferView.fxml"));
+			Scene depositView = new Scene(menu, 500, 400);
+			theStage.setScene(depositView);
+			theStage.show();
+			//checking for any errors when trying to load the view
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * This method launches the application
 	 * @param args

@@ -30,6 +30,9 @@ public class MainMenuController {
 
     @FXML
     private Label accountsSummaryLabel;
+    
+    @FXML
+    private Button etransferButton;
 
     @FXML
     private Button transferButton;
@@ -74,7 +77,18 @@ public class MainMenuController {
 		stage.close();
 		app.newSavingsView();
     }
-
+    
+    //future value method goes here
+    
+    
+    
+    @FXML
+    void etransferClicked(ActionEvent event) {
+    	Stage stage = (Stage) logoutButton.getScene().getWindow();
+		stage.close();
+		app.eTransferView();
+    }
+    
     @FXML
     void logoutButtonClicked(ActionEvent event) {
     	Stage stage = (Stage) logoutButton.getScene().getWindow();
