@@ -102,7 +102,7 @@ public class Users {
 		//loop through the accounts from the user and get the information from
 		//each account and then add that information to the summary string
 		for(Object account:accounts) {
-			summary+="\n"+account.toString();
+			summary+="\n"+account.toString()+"\n";
 		}
 		//return the summary string
 		return summary;
