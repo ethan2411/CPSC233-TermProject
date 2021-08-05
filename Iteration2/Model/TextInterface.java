@@ -157,12 +157,17 @@ public class TextInterface {
 		mainMenu();
 	}
 	
+	/**
+	 * This method allows the user to open a savings account
+	 */
 	public void openSavingsAccount() {
+		//Getting the account name
 		Scanner input = new Scanner(System.in);
 		String accountName ="";
 		System.out.println("What would you like to be the name of your new account?");
 		String name = input.nextLine();
 		boolean sure =false;
+		//looping until the user confirms the name
 		while(sure==false) {
 			//Check to see if the user actually wants that name
 			System.out.println("Are you sure you want this to be the name of your new account? (Yes or No)");
@@ -182,13 +187,17 @@ public class TextInterface {
 				System.out.println("Please enter yes or no");
 			}
 		}
-		//create an account with the name the user gave
+		//create a savings account with the name the user gave
 		SavingsAccount anotherAccount = new SavingsAccount(name, theUser,theBank);
 		//go back to the main menu
 		mainMenu();
 	}
 	
+	/**
+	 * This method gets the future value of a selected savings account
+	 */
 	public void futureValue() {
+		//getting the account and the time in the future to find the value of the account
 		Scanner input = new Scanner(System.in);
 		Scanner amount = new Scanner(System.in);
 		String account ="";
@@ -196,24 +205,62 @@ public class TextInterface {
 		account = input.nextLine();
 		System.out.println("How many years in the future would you like to see the value of this account?");
 		double years =amount.nextDouble();
+		//if the years in the future is a valid number then try and calculate the value
 		if(years>=0) {
+			//if the account doesn't exist then let the user know
 			if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
-				//if it is not then let the user know
 				System.out.println("You do not have an account with this number.");
 			}
+			//if the account number exists then calculate the value
 			else if(theUser.getAccount(account)!=null){
-				//if it is the users account then get the amount of money to be withdrawn and then withdraw the money
 				Object theAccount = ((CheckingAccount) theUser.getAccount(account));
 				double value = (double)((SavingsAccount)theAccount).findFutureAmount(years);
 				System.out.println("The future value of this account in "+years+ " years will be: $"+value);
 			}
+			//if the account name exists then calculate the value
 			else if(theUser.getAccountByName(account)!=null) {
-				//if it is the users account then get the amount of money to be deposited and then deposit the money
 				Object theAccount = ((CheckingAccount) theUser.getAccountByName(account));
 				double value = (double)((SavingsAccount)theAccount).findFutureAmount(years);
 				System.out.println("The future value of this account in "+years+ " years will be: $"+value);
 			}
 		}	
+		//go back to the main menu
+		mainMenu();
+	}
+	
+	/**
+	 * This method transfers money from one user to another
+	 */
+	public void etransfer() {
+		//get the info needed for the etransfer from the user
+		Scanner input = new Scanner(System.in);
+		System.out.println("What account would you like to transfer money from");
+		String account = input.nextLine();
+		System.out.println("Whats the User ID of the user you'd like to transfer to?");
+		String user = input.nextLine();
+		//get the user money is being transfered to
+		Users transferUser = theBank.getUser(user);
+		//if the account the money is coming from is not the users then let them know
+		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
+			System.out.println("You cannot transfer money from this account");
+		}
+		//if the user they are trying to transfer to doesn't exist then let them know
+		else if(transferUser==null) {
+			System.out.println("The user your trying to etransfer does not exist");
+		}
+		else {
+			//otherwise get the amount of money to be transfered and transfer the money from
+			//the user to they user they want it sent to
+			System.out.println("How much would you like to transfer");
+			double amount = input.nextDouble();
+			if(theUser.getAccount(account)!=null) {
+				((CheckingAccount) theUser.getAccount(account)).etransfer(amount, transferUser);
+			}
+			else {
+				((CheckingAccount) theUser.getAccountByName(account)).etransfer(amount, transferUser);
+			}
+		}
+		//go back to the menu
 		mainMenu();
 	}
 	
@@ -239,6 +286,7 @@ public class TextInterface {
 			System.out.println("5) Log out");
 			System.out.println("6) Open Savings Account");
 			System.out.println("7) Future Value of savings account");
+			System.out.println("8) E-Transfer");
 			String choice = input.nextLine();
 			//checks to validate the input
 			if(choice.equals("1") || choice.equalsIgnoreCase("Deposit")) {
@@ -257,7 +305,7 @@ public class TextInterface {
 				transfer();
 			}
 			else if(choice.equals("4") || choice.equalsIgnoreCase("Open Another Account")) {
-				//if they chose to make a new account then use the makeNewAccount
+				//if they chose to make a new account then use the makeNewAccount and set boolean to true
 				//method and set the boolean to true
 				valid=true;
 				makeNewAccount();
@@ -268,15 +316,21 @@ public class TextInterface {
 				run();
 			}
 			else if(choice.equals("6")|| choice.equalsIgnoreCase("Open Savings Account")) {
-				//if they chose logout then go back to the login menu and set boolean to true
+				//if they chose to open a savings account then use openSavingsAccount and set boolean to true
 				valid=true;
 				openSavingsAccount();
 				
 			}
 			else if(choice.equals("7")|| choice.equalsIgnoreCase("Furure Value of savings account")) {
-				//if they chose logout then go back to the login menu and set boolean to true
+				//if they chose to find the future value then use futureValue and set boolean to true
 				valid=true;
 				futureValue();
+				
+			}
+			else if(choice.equals("8")|| choice.equalsIgnoreCase("E-Transfer")) {
+				//if they chose e-transfer then use etransfer and set boolean to true
+				valid=true;
+				etransfer();
 				
 			}
 			
@@ -331,8 +385,8 @@ public class TextInterface {
 		String ID = theUser.getUserID();
 		System.out.println("Your user ID is: "+ID +"   It will be needed to log you in.");
 		//Let the user know they're getting a checking account and then make the account for them
-		System.out.println("You will now be given one of our Basic Checking Accounts");
-		CheckingAccount starter = new CheckingAccount("Basic Checking Account",theUser,theBank);
+		System.out.println("You will now be given one of our Basic Chequing Accounts");
+		CheckingAccount starter = new CheckingAccount("Basic Chequing Account",theUser,theBank);
 		//add the account to the bank
 		theBank.addAccount(starter);
 		//show the user their account
