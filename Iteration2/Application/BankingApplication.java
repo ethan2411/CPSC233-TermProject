@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 public class BankingApplication extends Application {
 	//creating a stage variable to be used throughout the application
 	Stage theStage = new Stage();
+	
 	/**
 	 * This method loads the initial view that the user will see so they can login
 	 */
@@ -22,6 +23,7 @@ public class BankingApplication extends Application {
 			//creating a loader and loading the file, then making the scene large enough
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
+			//loading the file and showing the scene
 			Parent root = loader.load(new FileInputStream("src/application/LoginView.fxml"));
 			Scene scene = new Scene(root,350,300);
 			theStage.setScene(scene);
@@ -32,7 +34,7 @@ public class BankingApplication extends Application {
 		}
 	}
 	/**
-	 * This method loads the main menu view of the appliation for the user to interact with
+	 * This method loads the main menu view of the application for the user to interact with
 	 */
 	public void mainMenu() {
 		try {
@@ -40,6 +42,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/MainMenuView.fxml"));
 			Scene mainMenu = new Scene(menu, 600, 500);
 			theStage.setScene(mainMenu);
@@ -59,6 +62,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/DepositView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);
@@ -78,6 +82,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/WithdrawView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);
@@ -97,6 +102,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/TransferView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);
@@ -116,6 +122,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/NewAccountView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);
@@ -135,6 +142,7 @@ public class BankingApplication extends Application {
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/NewSavingsView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);
@@ -145,12 +153,16 @@ public class BankingApplication extends Application {
 		}
 	}
 	
+	/**
+	 * This method loads the view when the user selects to make an E-Transfer
+	 */
 	public void eTransferView() {
 		try {
 			//creating a loader and loading the file, then making the scene large enough
 			//and setting the stage to show the user
 			FXMLLoader loader = new FXMLLoader();
 			AnchorPane menu = new AnchorPane();
+			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/E-TransferView.fxml"));
 			Scene depositView = new Scene(menu, 500, 400);
 			theStage.setScene(depositView);

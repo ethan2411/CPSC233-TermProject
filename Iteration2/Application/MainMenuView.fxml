@@ -13,7 +13,7 @@
       <Button fx:id="depositButton" layoutX="300.0" layoutY="80.0" mnemonicParsing="false" onAction="#depositClicked" text="Deposit" />
       <Button fx:id="withdrawButton" layoutX="300.0" layoutY="140.0" mnemonicParsing="false" onAction="#withdrawClicked" text="Withdraw" />
       <Button fx:id="transferButton" layoutX="300.0" layoutY="260.0" mnemonicParsing="false" onAction="#transferCLicked" text="Transfer" />
-      <Button fx:id="newAccountButton" layoutX="300.0" layoutY="320.0" mnemonicParsing="false" onAction="#newAccountClicked" text="Open A Checking Account" />
+      <Button fx:id="newAccountButton" layoutX="300.0" layoutY="320.0" mnemonicParsing="false" onAction="#newAccountClicked" text="Open A Chequing Account" />
       <Button fx:id="logoutButton" layoutX="450.0" layoutY="450.0" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
       <Label fx:id="userIDLabel" layoutX="500.0" layoutY="15.0" />
       <Button fx:id="savingsButton" layoutX="300.0" layoutY="380.0" mnemonicParsing="false" onAction="#savingsClicked" text="Open A Savings Account" />

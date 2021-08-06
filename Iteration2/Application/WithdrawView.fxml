@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.WithdrawController">
    <children>
-      <Button fx:id="withdrawButton" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#withdrawButton" text="Confirm Withdrawl" />
+      <Button fx:id="withdrawButton" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#withdrawButton" text="Confirm Withdrawal" />
       <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="395.0" prefWidth="250.0" />
       <Label fx:id="accountLabel" layoutX="300.0" layoutY="50.0" text="Account to Withdraw From: " />
       <Label fx:id="amountLabel" layoutX="300.0" layoutY="120.0" text="Amount to Withdraw: " />

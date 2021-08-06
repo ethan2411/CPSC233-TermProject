@@ -1,5 +1,8 @@
 /**
- * This method controls what happens after the user selects the input
+ * This method controls what happens after the user selects if they're
+ * a new user of an existing user and allows them to create an account
+ * or log in to an existing account
+ * @author Ethan Scott
  */
 package application;
 import javafx.event.ActionEvent;
@@ -68,10 +71,8 @@ public class LoginController {
     @FXML
     private Label nameLabel;
     
-    //app instance variable to change scenes
+    //information that the whole class will use
     private BankingApplication app = new BankingApplication();
-    //creating a user and bank variable that other controllers
-    //will also be able to use
     private static Users theUser = new Users();
     private static Bank theBank = new Bank("The Bank");
 
@@ -185,28 +186,36 @@ public class LoginController {
      */
     @FXML
     void createUserClicked(ActionEvent event) {
+    	//getting the name and password the user entered
     	String name = nameText.getText();
     	String pass = newPassText.getText();
+    	//if there is no name or password give the user a warning
     	if(name.equals("") || pass.equals("")) {
+    		//create the warning for the user
     		Alert error = new Alert(AlertType.WARNING);
         	error.setTitle("Please Enter Information");
         	error.setHeaderText("No Name or Password");
         	error.setContentText("Please enter a name and password to create your account.");
         	error.showAndWait();
     	}
+    	//if the user entered a valid name and password then do this
     	else {
+    		//add the user to the bank, get a UserID for them and create a basic chequing account for them
     		theUser = theBank.addUser(name, pass);
         	String ID = theUser.getUserID();
         	CheckingAccount starter = new CheckingAccount("Basic Chequing Account",theUser,theBank);
     		theBank.addAccount(starter);
     		//The next section of code on alert boxes 
     		//was found on https://code.makery.ch/blog/javafx-dialogs-official/
+    		//Let the user know their UserID and that they have been given an account
         	Alert alert = new Alert(AlertType.INFORMATION);
         	alert.setTitle("User Information");
         	alert.setHeaderText("Information about your account");
         	alert.setContentText("Your userID is: "+ID+ " this will be needed to login. \n"
         			+ "You will also be given one of our basic chequing accounts to start.");
         	alert.showAndWait();
+        	//make everything invisible and then make the items visible that
+        	//will be needed for the user to log in
         	backClicked(event);
         	existingUserClicked(event);
     	}
