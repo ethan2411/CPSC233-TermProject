@@ -44,7 +44,7 @@ public class BankingApplication extends Application {
 			AnchorPane menu = new AnchorPane();
 			//loading the file and showing the scene
 			menu = loader.load(new FileInputStream("src/application/MainMenuView.fxml"));
-			Scene mainMenu = new Scene(menu, 600, 500);
+			Scene mainMenu = new Scene(menu, 600, 450);
 			theStage.setScene(mainMenu);
 			theStage.show();
 			//checking for any errors when trying to load the view
