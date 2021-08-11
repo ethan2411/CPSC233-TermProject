@@ -63,30 +63,8 @@ public class WithdrawController {
         		errorLabel.setText("The account you entered does not exist.");
     		}
     		//if it does exist and they entered the account number it does this
-    		else if(theUser.getAccount(account)!=null){
-    			//withdraw the money from the account and then change the scene back to the main menu
-    			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
-    				((CheckingAccount) theUser.getAccount(account)).withdraw(amount);
-        			change();
-    			}
-    			else {
-    				//if the amount entered isn't valid then let the user know through the error label
-    				errorLabel.setTextFill(Color.RED);
-            		errorLabel.setText("The amount entered cannot be withdrawn");
-    			}
-    		}
-    		//if the user entered the account name of the account then it does this
-    		else if(theUser.getAccountByName(account)!=null) {
-    			//withdraw the money from the account and then change the scene back to the main menu
-    			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance()) {
-    				((CheckingAccount) theUser.getAccountByName(account)).withdraw(amount);
-        			change();
-    			}
-    			else {
-    				//if the amount entered isn't valid then let the user know through the error label
-    				errorLabel.setTextFill(Color.RED);
-            		errorLabel.setText("The amount entered cannot be withdrawn");
-    			}
+    		else {
+    			withdraw(account, amount);
     		}
     	}
     	//if the amount cannot be changed into a double then let the user know
@@ -96,6 +74,34 @@ public class WithdrawController {
     		errorLabel.setText("Please enter a valid number to withdraw.");
     		amountText.setText("");
     	}
+    }
+    
+    private void withdraw(String account, double amount) {
+    	if(theUser.getAccount(account)!=null){
+			//withdraw the money from the account and then change the scene back to the main menu
+			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
+				((CheckingAccount) theUser.getAccount(account)).withdraw(amount);
+    			change();
+			}
+			else {
+				//if the amount entered isn't valid then let the user know through the error label
+				errorLabel.setTextFill(Color.RED);
+        		errorLabel.setText("The amount entered cannot be withdrawn");
+			}
+		}
+		//if the user entered the account name of the account then it does this
+		else if(theUser.getAccountByName(account)!=null) {
+			//withdraw the money from the account and then change the scene back to the main menu
+			if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance()) {
+				((CheckingAccount) theUser.getAccountByName(account)).withdraw(amount);
+    			change();
+			}
+			else {
+				//if the amount entered isn't valid then let the user know through the error label
+				errorLabel.setTextFill(Color.RED);
+        		errorLabel.setText("The amount entered cannot be withdrawn");
+			}
+		}
     }
     
     /**

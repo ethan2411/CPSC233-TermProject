@@ -53,7 +53,17 @@ public class NewAccountController {
     void createAccountClicked(ActionEvent event) {
     	//getting the name entered by the user
     	String accountName = nameText.getText();
-		//Check to see if the user actually wants that name
+    	if(accountName.equals("")) {
+    		errorLabel.setTextFill(Color.RED);
+    		errorLabel.setText("Please enter an account name");
+    	}
+    	else {
+    		makeAccount(accountName);
+    	}
+    }
+    
+    private void makeAccount(String accountName) {
+    	//Check to see if the user actually wants that name
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Confirm Account Name");
     	alert.setHeaderText("Please confirm you'd like this to be the name of your account");
