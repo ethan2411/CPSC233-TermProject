@@ -74,6 +74,11 @@ public class DepositController {
     	}    	
     }
     
+    /**
+     * This method makes the deposit 
+     * @param account Account to deposit money into
+     * @param amount Amount to deposit
+     */
     private void deposit(String account, double amount) {
     	if((CheckingAccount)theUser.getAccount(account)!=null) {
 			//check to see if the amount is valid and then deposit it and take the user to the main menu

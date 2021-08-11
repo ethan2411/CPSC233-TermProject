@@ -90,6 +90,12 @@ public class ETransferController {
     	}
     }
     
+    /**
+     * This method checks to see if the E-Transfer can be made
+     * @param account The account to transfer money out of
+     * @param transferUser The user to transfer money into
+     * @param amount The amount to transfer
+     */
     private void checkETransfer(String account, Users transferUser, double amount) {
     	if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
 			//if it does not exist then let the user know through the error label
@@ -102,10 +108,17 @@ public class ETransferController {
     		errorLabel.setText("The User you are transfering to doesn't exist");
 		}
     	else {
+    		//make the E-Transfer
     		eTransfer(account, transferUser, amount);
     	}
     }
     
+    /**
+     * This method makes the E-Transfer
+     * @param account The account to transfer money out of
+     * @param transferUser The user to transfer money into
+     * @param amount The amount to transfer
+     */
     private void eTransfer(String account, Users transferUser, double amount) {
     	//if the user entered their own account number then do this
     	if(theUser.getAccount(account)!=null) {

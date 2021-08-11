@@ -59,8 +59,8 @@ public class TransferController {
     			errorLabel.setTextFill(Color.RED);
         		errorLabel.setText("The account you are transfering from doesn't exist.");
     		}
-    		//if the account the money is going to is not the users then let them know
     		else {
+    			//try to make the transfer
     			makeTransfer(transferAccount, account, amount);
     		}
     	}
@@ -73,9 +73,13 @@ public class TransferController {
     	}
     }
     
-    
-    
-    
+    /**
+     * This method makes sure the information added by the user is correct
+     * and then makes the transfer
+     * @param transferAccount Account to transfer money into
+     * @param account Account to transfer money out of
+     * @param amount Amount to transfer
+     */
     private void makeTransfer(String transferAccount, String account, double amount) {
     	if(theUser.getAccount(transferAccount)==null && theUser.getAccountByName(transferAccount)==null) {
 			//changing the error label to let the user know
@@ -95,7 +99,12 @@ public class TransferController {
 			}
 	}
 
-
+    /**
+     * This method makes the transfer if the user entered the accounts number
+     * @param account Account to transfer money out of
+     * @param transferAccount Account to transfer money into
+     * @param amount Amount to transfer
+     */
     private void transferByNum(String account, String transferAccount, double amount) {
     	if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null) {
 			//if the amount trying to be transfered is valid then transfer the money from one account to the other
@@ -112,6 +121,12 @@ public class TransferController {
     	}
     }
     
+    /**
+     * This method makes the transfer if the user entered the accounts name
+     * @param account Account to transfer money out of
+     * @param transferAccount Account to transfer money into
+     * @param amount Amount to transfer
+     */
     private void transferByName(String account, String transferAccount, double amount) {
     	//if the amount trying to be transfered is valid then transfer the money from one account to the other
 		//and change the view back to the main menu

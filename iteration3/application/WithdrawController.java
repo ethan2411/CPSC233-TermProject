@@ -62,8 +62,8 @@ public class WithdrawController {
     			errorLabel.setTextFill(Color.RED);
         		errorLabel.setText("The account you entered does not exist.");
     		}
-    		//if it does exist and they entered the account number it does this
     		else {
+    			//try to make the transfer
     			withdraw(account, amount);
     		}
     	}
@@ -76,6 +76,11 @@ public class WithdrawController {
     	}
     }
     
+    /**
+     * This method makes the withdrawal if the user entered correct information
+     * @param account Account to withdraw from
+     * @param amount Amount to withdraw
+     */
     private void withdraw(String account, double amount) {
     	if(theUser.getAccount(account)!=null){
 			//withdraw the money from the account and then change the scene back to the main menu

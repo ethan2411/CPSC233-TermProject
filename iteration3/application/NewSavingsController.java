@@ -54,6 +54,7 @@ public class NewSavingsController {
     void createCkicked(ActionEvent event) {
     	//get the name the user enters
     	String accountName = nameText.getText();
+    	//if the name is null let them know
     	if(accountName.equals("")) {
     		errorLabel.setTextFill(Color.RED);
     		errorLabel.setText("Please enter an account name");
@@ -63,7 +64,11 @@ public class NewSavingsController {
     	}
     }
     
-    
+    /**
+     * This method checks the user is sure they want the name of the account to be what
+     * they entered and if it is then it makes the account
+     * @param accountName The name the user entered for the account
+     */
     private void makeAccount(String accountName) {
     	//Check to see if the user actually wants that name
     	Alert alert = new Alert(AlertType.CONFIRMATION);
