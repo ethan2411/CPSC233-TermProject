@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <PasswordField fx:id="passText" layoutX="50.0" layoutY="175.0" visible="false" />
+      <TextField fx:id="IDText" layoutX="50.0" layoutY="80.0" visible="false" />
+      <Label fx:id="userIDLabel" layoutX="50.0" layoutY="50.0" text="UserID" visible="false" />
+      <Label fx:id="passwordLabel" layoutX="50.0" layoutY="145.0" text="Password" visible="false" />
+      <Button fx:id="loginButton" layoutX="250.0" layoutY="225.0" mnemonicParsing="false" onAction="#loginClicked" text="Login" visible="false" />
+      <Button fx:id="backButton" layoutX="50.0" layoutY="225.0" mnemonicParsing="false" onAction="#backClicked" text="Back" visible="false" />
+      <Label fx:id="loginLabel" layoutX="50.0" layoutY="15.0" prefHeight="35.0" prefWidth="298.0" text="Please Login" visible="false" />
+      <Button fx:id="newUserButton" layoutX="90.0" layoutY="140.0" mnemonicParsing="false" onAction="#newUserClicked" prefWidth="175.0" text="New User" />
+      <Button fx:id="existingUserButton" layoutX="90.0" layoutY="240.0" mnemonicParsing="false" onAction="#existingUserClicked" prefWidth="175.0" text="Existing User" />
+      <Button fx:id="createUserButton" layoutX="250.0" layoutY="225.0" mnemonicParsing="false" onAction="#createUserClicked" text="Create User" visible="false" />
+      <Label fx:id="nameLabel" layoutX="50.0" layoutY="50.0" text="What is your name?" visible="false" />
+      <Label fx:id="newPassLabel" layoutX="50.0" layoutY="145.0" text="Please create a password:" visible="false" />
+      <TextField fx:id="nameText" layoutX="50.0" layoutY="80.0" visible="false" />
+      <TextField fx:id="newPassText" layoutX="50.0" layoutY="175.0" visible="false" />
+      <Label fx:id="welcomeLabel" alignment="TOP_CENTER" layoutX="-20.0" layoutY="10.0" prefHeight="75.0" prefWidth="390.0" text="Welcome to &quot;The Bank&quot;" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <Label fx:id="orLabel" alignment="CENTER" layoutX="90.0" layoutY="190.0" prefWidth="175.0" text="Or" />
+      <Label fx:id="selectLabel" alignment="CENTER" layoutX="90.0" layoutY="90.0" prefWidth="175.0" text="Please Select" />
+   </children>
+</AnchorPane>

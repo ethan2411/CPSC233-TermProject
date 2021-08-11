@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DepositController">
+   <children>
+      <Label fx:id="accountSummaryLabel" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="395.0" prefWidth="250.0" />
+      <Label fx:id="amountLabel" layoutX="300.0" layoutY="120.0" text="Amount to Deposit: " />
+      <Label layoutX="300.0" layoutY="50.0" text="Acount to Deposit Into: " />
+      <TextField fx:id="accountText" layoutX="300.0" layoutY="70.0" />
+      <TextField fx:id="amountText" layoutX="300.0" layoutY="140.0" />
+      <Button fx:id="depositButton" layoutX="300.0" layoutY="220.0" mnemonicParsing="false" onAction="#depositClicked" text="Confirm Deposit" />
+      <Label fx:id="errorLabel" layoutX="225.0" layoutY="20.0" prefHeight="35.0" prefWidth="365.0" />
+      <Button fx:id="backButton" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
+   </children>
+</AnchorPane>
