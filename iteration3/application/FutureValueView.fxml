@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FutureValueController">
+   <children>
+      <Label fx:id="errorLabel" layoutX="225.0" layoutY="20.0" prefHeight="35.0" prefWidth="365.0" />
+      <Label fx:id="yearsLabel" layoutX="300.0" layoutY="120.0" text="How many years in the future?" />
+      <Label fx:id="accountLabel" layoutX="300.0" layoutY="50.0" text="Account:" />
+      <TextField fx:id="AccountText" layoutX="300.0" layoutY="70.0" />
+      <TextField fx:id="yearsText" layoutX="300.0" layoutY="140.0" />
+      <Button fx:id="valueButton" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#findValueClicked" text="Find Value" />
+      <Button fx:id="backButton" layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#backClicked" text="Back" />
+      <Button fx:id="visualButton" layoutX="300.0" layoutY="250.0" mnemonicParsing="false" onAction="#visualClicked" text="Visualize" />
+      <Label fx:id="summaryTab" alignment="TOP_LEFT" layoutX="1.0" layoutY="14.0" prefHeight="395.0" prefWidth="250.0" />
+      <Button fx:id="returnButton" layoutX="425.0" layoutY="300.0" mnemonicParsing="false" onAction="#returnClicked" text="Return" visible="false" />
+      <PieChart fx:id="myPieChart" prefHeight="400.0" prefWidth="450.0" title="Your Account" visible="false" />
+   </children>
+</AnchorPane>
