@@ -87,17 +87,15 @@ public class TransferController {
     		errorLabel.setText("The account you are trying to transfer money from doesn't exist.");
 		}
 		//if the user entered a valid account name or account number
-		else if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null ||
-				theUser.getAccountByName(account)!=null && theUser.getAccountByName(transferAccount)!=null){
+		else if(theUser.getAccount(account)!=null && theUser.getAccount(transferAccount)!=null){
 			//if both accounts are the users and they entered the account number do this
-			transferByNum(account, transferAccount, amount);
+				transferByNum(account, transferAccount, amount);
 			}
 			//if the user entered the account names then do this
-			else {
-				transferByName(account, transferAccount, amount);
-				
-			}
-	}
+		else {
+			transferByName(account, transferAccount, amount);
+		}
+    }
 
     /**
      * This method makes the transfer if the user entered the accounts number
@@ -131,7 +129,7 @@ public class TransferController {
     	//if the amount trying to be transfered is valid then transfer the money from one account to the other
 		//and change the view back to the main menu
     	if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance()) {
-			((CheckingAccount) theUser.getAccountByName(account)).transfer(amount, (CheckingAccount) theUser.getAccountByName(transferAccount));
+    		((CheckingAccount) theUser.getAccountByName(account)).transfer(amount, (CheckingAccount) theUser.getAccountByName(transferAccount));
 			change();
 		}
 		else {
