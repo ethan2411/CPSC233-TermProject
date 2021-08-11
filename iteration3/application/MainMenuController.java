@@ -138,6 +138,10 @@ public class MainMenuController {
 		app.start(stage);
     }
     
+    /**
+     * This method changes to the login view
+     * @param event Clicking the find future value button
+     */
     @FXML
     void futureValueClicked(ActionEvent event) {
     	//closing the current view and opening a new one

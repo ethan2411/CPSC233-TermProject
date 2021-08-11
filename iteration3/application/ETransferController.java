@@ -79,48 +79,7 @@ public class ETransferController {
     		//getting the user based on the userID entered by the user
     		Users transferUser = theBank.getUser(userString);    
     		//seeing if the account the money is coming from exists
-    		if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
-    			//if it does not exist then let the user know through the error label
-    			errorLabel.setTextFill(Color.RED);
-        		errorLabel.setText("The account you are transfering from doesn't exist");
-    		}
-    		//if the user they are trying to transfer to doesn't exist then let the user know
-    		else if(transferUser==null) {
-    			//updating error label to let the user know
-    			errorLabel.setTextFill(Color.RED);
-        		errorLabel.setText("The User you are transfering to doesn't exist");
-    		}
-    		//if both the user and the account exist then this will happen
-    		else {
-    			//if the user entered their own account number then do this
-       			if(theUser.getAccount(account)!=null) {
-       				//check to see if the amount entered will work
-       				if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
-       					//if the amount is valid the transfer it and go back to the main menu
-           				((CheckingAccount) theUser.getAccount(account)).etransfer(amount, transferUser);
-           				change();
-       				}
-       				else {
-       					//if the amount is not valid let the user know through the error label
-       					errorLabel.setTextFill(Color.RED);
-    	        		errorLabel.setText("The amount entered cannot be transfered");
-       				}
-       			}
-       			//if the user didn't enter their account number they entered their account name so do this
-       			else{
-       				//check to see if the amount entered will work
-       				if((amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance())){
-       					//if the amount is valid the transfer it and go back to the main menu
-       					((CheckingAccount) theUser.getAccountByName(account)).etransfer(amount, transferUser);
-           				change();
-       				}
-       				else {
-       					//if the amount is not valid let the user know through the error label
-       					errorLabel.setTextFill(Color.RED);
-    	        		errorLabel.setText("The amount entered cannot be transfered");
-       				}
-        		}
-    		}
+    		checkETransfer(account, transferUser, amount);
        	}
     	//if the amount can't be changed into a double then let the user know
     	catch(Exception e) {
@@ -128,6 +87,53 @@ public class ETransferController {
     		errorLabel.setTextFill(Color.RED);
     		errorLabel.setText("Please enter a valid amount to transfer.");
     		amountText.setText("");
+    	}
+    }
+    
+    private void checkETransfer(String account, Users transferUser, double amount) {
+    	if(theUser.getAccount(account)==null && theUser.getAccountByName(account)==null) {
+			//if it does not exist then let the user know through the error label
+			errorLabel.setTextFill(Color.RED);
+    		errorLabel.setText("The account you are transfering from doesn't exist");
+		}
+    	else if(transferUser==null) {
+			//updating error label to let the user know
+			errorLabel.setTextFill(Color.RED);
+    		errorLabel.setText("The User you are transfering to doesn't exist");
+		}
+    	else {
+    		eTransfer(account, transferUser, amount);
+    	}
+    }
+    
+    private void eTransfer(String account, Users transferUser, double amount) {
+    	//if the user entered their own account number then do this
+    	if(theUser.getAccount(account)!=null) {
+    		//check to see if the amount entered will work
+    		if(amount>=0 && amount<= ((CheckingAccount) theUser.getAccount(account)).getBalance()) {
+    			//if the amount is valid the transfer it and go back to the main menu
+    			((CheckingAccount) theUser.getAccount(account)).etransfer(amount, transferUser);
+    			change();
+    		}
+    		else {
+    			//if the amount is not valid let the user know through the error label
+    			errorLabel.setTextFill(Color.RED);
+    			errorLabel.setText("The amount entered cannot be transfered");
+    		}
+    	}
+    	//if the user didn't enter their account number they entered their account name so do this
+    	else{
+    		//check to see if the amount entered will work
+    		if((amount>=0 && amount<= ((CheckingAccount) theUser.getAccountByName(account)).getBalance())){
+    			//if the amount is valid the transfer it and go back to the main menu
+    			((CheckingAccount) theUser.getAccountByName(account)).etransfer(amount, transferUser);
+    			change();
+    		}
+    		else {
+    			//if the amount is not valid let the user know through the error label
+    			errorLabel.setTextFill(Color.RED);
+    			errorLabel.setText("The amount entered cannot be transfered");
+    		}
     	}
     }
     
