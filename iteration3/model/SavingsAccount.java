@@ -44,6 +44,11 @@ public class SavingsAccount extends CheckingAccount {
 		}
 	}
 	
+	/**
+	 * This method finds the amount of interest gained on the account
+	 * @param years Number of years in the future
+	 * @return
+	 */
 	public double findInterest(double years) {
 		//get the balance of the account
 			double currentBalance = this.getBalance();
